@@ -1,7 +1,7 @@
 // Test ID: IIDSAT
 
 import {
-	calcMinutesLeft,
+	remainingMinutes,
 	formatCurrency,
 	formatDate,
 } from "../../utils/helpers";
@@ -51,7 +51,7 @@ const Order = () => {
 		estimatedDelivery,
 		cart,
 	} = order;
-	const deliveryIn = calcMinutesLeft(estimatedDelivery);
+	const deliveryIn = remainingMinutes(estimatedDelivery);
 
 	return (
 		<div>
@@ -67,7 +67,7 @@ const Order = () => {
 			<div>
 				<p>
 					{deliveryIn >= 0
-						? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
+						? `Only ${remainingMinutes(estimatedDelivery)} minutes left 😃`
 						: "Order should have arrived"}
 				</p>
 				<p>(Estimated delivery: {formatDate(estimatedDelivery)})</p>
