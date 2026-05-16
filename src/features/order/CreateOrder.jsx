@@ -44,38 +44,44 @@ const CreateOrder = () => {
 	const cart = fakeCart;
 
 	return (
-		<div>
-			<h2>Ready to order? Let's go!</h2>
+		<div className="px-4 py-6">
+			<h2 className="font-smibold mb-8 text-xl">
+				Ready to order? Let&apos;s go!
+			</h2>
 
 			<Form method="POST">
-				<div>
-					<label>First Name</label>
+				<div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+					<label className="sm:basis-36">First Name</label>
 					<input
-						className="input"
+						className="input grow"
 						type="text"
 						name="customer"
 						required
 					/>
 				</div>
 
-				<div>
-					<label>Phone number</label>
-					<div>
+				<div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+					<label className="sm:basis-36">Phone number</label>
+					<div className="grow">
 						<input
-							className="input"
+							className="input w-full"
 							type="tel"
 							name="phone"
 							required
 						/>
+						{formErrors?.phone && (
+							<p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
+								{formErrors.phone}
+							</p>
+						)}
 					</div>
-					{formErrors?.phone && <p>{formErrors.phone}</p>}
 				</div>
 
-				<div>
-					<label>Address</label>
-					<div>
+				<div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+					<label className="sm:basis-36">Address</label>
+					<div className="grow">
 						<input
-							className="input"
+							className="input w-full"
 							type="text"
 							name="address"
 							required
@@ -83,7 +89,7 @@ const CreateOrder = () => {
 					</div>
 				</div>
 
-				<div>
+				<div className="mb-12 flex items-center gap-5">
 					<input
 						className="h-6 w-6 accent-yellow-400 focus:outline-none focus:ring focus:ring-yellow-400 focus:ring-offset-2"
 						type="checkbox"
@@ -92,7 +98,7 @@ const CreateOrder = () => {
 						// value={withPriority}
 						// onChange={(e) => setWithPriority(e.target.checked)}
 					/>
-					<label htmlFor="priority">
+					<label className="font-medium" htmlFor="priority">
 						Want to give your order priority?
 					</label>
 				</div>
@@ -113,6 +119,7 @@ const CreateOrder = () => {
 };
 
 const action = async ({ request }) => {
+	console.log("test");
 	const formData = await request.formData();
 	const data = Object.fromEntries(formData);
 
@@ -127,9 +134,10 @@ const action = async ({ request }) => {
 		errors.phone = "Please enter a valid phone number.";
 	if (Object.keys(errors).length > 0) return errors;
 
-	const newOrder = await createOrder(order);
+	return null;
+	// const newOrder = await createOrder(order);
 
-	return redirect(`/order/${newOrder.id}`);
+	// return redirect(`/order/${newOrder.id}`);
 };
 
 export { CreateOrder as default, action };
