@@ -19,9 +19,9 @@ const Button = ({ children, type = "primary", disabled, to }) => {
 		);
 
 	return (
-		<div className={styles[type]} disabled={disabled}>
+		<button className={styles[type]} disabled={disabled}>
 			{children}
-		</div>
+		</button>
 	);
 };
 
