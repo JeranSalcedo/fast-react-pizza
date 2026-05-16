@@ -36,8 +36,8 @@ const Cart = () => {
 			<h2 className="mt-7 text-xl font-semibold">Your cart, %NAME%</h2>
 
 			<ul className="mt-3 divide-y divide-stone-200 border-b">
-				{cart.map((item, ind) => (
-					<CartItem key={ind} item={item} />
+				{cart.map((item) => (
+					<CartItem key={item.pizzaId} item={item} />
 				))}
 			</ul>
 
