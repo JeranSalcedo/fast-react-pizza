@@ -19,5 +19,6 @@ module.exports = {
 				allowExportNames: ["loader", "action"],
 			},
 		],
+		"react/prop-types": "off",
 	},
 };
