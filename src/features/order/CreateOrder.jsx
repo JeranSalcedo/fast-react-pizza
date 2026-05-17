@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { createOrder } from "../../services/apiRestaurant";
 import Button from "../../ui/Button";
@@ -35,6 +36,7 @@ const fakeCart = [
 ];
 
 const CreateOrder = () => {
+	const userName = useSelector((state) => state.user.userName);
 	const navigation = useNavigation();
 	const isSubmitting = navigation.state === "submitting";
 
@@ -56,6 +58,7 @@ const CreateOrder = () => {
 						className="input grow"
 						type="text"
 						name="customer"
+						defaultValue={userName}
 						required
 					/>
 				</div>
@@ -134,10 +137,9 @@ const action = async ({ request }) => {
 		errors.phone = "Please enter a valid phone number.";
 	if (Object.keys(errors).length > 0) return errors;
 
-	return null;
-	// const newOrder = await createOrder(order);
+	const newOrder = await createOrder(order);
 
-	// return redirect(`/order/${newOrder.id}`);
+	return redirect(`/order/${newOrder.id}`);
 };
 
 export { CreateOrder as default, action };
