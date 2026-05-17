@@ -3,6 +3,8 @@ import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { createOrder } from "../../services/apiRestaurant";
+import { getUserName } from "../user/userSlice";
+
 import Button from "../../ui/Button";
 
 // https://uibakery.io/regex-library/phone-number
@@ -36,7 +38,7 @@ const fakeCart = [
 ];
 
 const CreateOrder = () => {
-	const userName = useSelector((state) => state.user.userName);
+	const userName = useSelector(getUserName);
 	const navigation = useNavigation();
 	const isSubmitting = navigation.state === "submitting";
 
