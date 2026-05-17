@@ -18,7 +18,7 @@ const slice = createSlice({
 		},
 		increaseItemQuantity(state, action) {
 			const item = state.cart.find(
-				(item) => (item.pizzaId = action.payload),
+				(item) => item.pizzaId === action.payload,
 			);
 
 			item.quantity++;
@@ -26,7 +26,7 @@ const slice = createSlice({
 		},
 		decreaseItemQuantity(state, action) {
 			const item = state.cart.find(
-				(item) => (item.pizzaId = action.payload),
+				(item) => item.pizzaId === action.payload,
 			);
 
 			item.quantity--;
