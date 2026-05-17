@@ -1,3 +1,3 @@
 # fast-react-pizza
 
-Project done for education purposes
+Project done for educational purposes using React Router, tailwindcss, and Redux
