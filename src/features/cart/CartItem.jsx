@@ -1,5 +1,6 @@
-import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
+
+import DeleteItemButton from "./DeleteItemButton";
 
 const CartItem = ({ item }) => {
 	const { pizzaId, name, quantity, totalPrice } = item;
@@ -13,7 +14,7 @@ const CartItem = ({ item }) => {
 				<p className="text-sm font-bold">
 					{formatCurrency(totalPrice)}
 				</p>
-				<Button type="small">Delete</Button>
+				<DeleteItemButton type="small" id={pizzaId} />
 			</div>
 		</li>
 	);
