@@ -40,17 +40,18 @@ const slice = createSlice({
 	},
 });
 
-export const getCart = (state) => state.cart.cart;
+const getCart = (state) => state.cart.cart;
 
-export const getQuantityById = (id) => (state) =>
+const getQuantityById = (id) => (state) =>
 	state.cart.cart.find((item) => item.pizzaId === id)?.quantity ?? 0;
 
-export const getTotalCartQuantity = (state) =>
+const getTotalCartQuantity = (state) =>
 	state.cart.cart.reduce((total, item) => total + item.quantity, 0);
 
-export const getTotalCartPrice = (state) =>
+const getTotalCartPrice = (state) =>
 	state.cart.cart.reduce((total, item) => total + item.totalPrice, 0);
 
+export { getCart, getQuantityById, getTotalCartQuantity, getTotalCartPrice };
 export const {
 	addItem,
 	deleteItem,
