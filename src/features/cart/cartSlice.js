@@ -38,6 +38,12 @@ const slice = createSlice({
 	},
 });
 
+export const getTotalCartQuantity = (state) =>
+	state.cart.cart.reduce((total, item) => total + item.quantity, 0);
+
+export const getTotalCartPrice = (state) =>
+	state.cart.cart.reduce((total, item) => total + item.totalPrice, 0);
+
 export const {
 	addItem,
 	deleteItem,
