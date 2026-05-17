@@ -5,13 +5,15 @@ import { addItem, getQuantityById } from "../cart/cartSlice";
 
 import Button from "../../ui/Button";
 import DeleteItemButton from "../cart/DeleteItemButton";
+import UpdateItemQuantity from "../cart/UpdateItemQuantity";
 
 const MenuItem = ({ pizza }) => {
 	const dispatch = useDispatch();
 
 	const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
 
-	const inCart = useSelector(getQuantityById(id)) > 0;
+	const itemQuantity = useSelector(getQuantityById(id));
+	const inCart = itemQuantity > 0;
 
 	const handleAddToCart = () => {
 		const newItem = {
@@ -46,7 +48,15 @@ const MenuItem = ({ pizza }) => {
 						</p>
 					)}
 
-					{inCart && <DeleteItemButton id={id} />}
+					{inCart && (
+						<div className="flex items-center justify-between gap-3 sm:gap-8">
+							<UpdateItemQuantity
+								id={id}
+								quantity={itemQuantity}
+							/>
+							<DeleteItemButton id={id} />
+						</div>
+					)}
 					{!soldOut && !inCart && (
 						<Button type="small" onClick={handleAddToCart}>
 							Add to cart

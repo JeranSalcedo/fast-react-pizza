@@ -29,6 +29,8 @@ const slice = createSlice({
 				(item) => item.pizzaId === action.payload,
 			);
 
+			if (item.quantity === 1) return;
+
 			item.quantity--;
 			item.totalPrice -= item.unitPrice;
 		},
